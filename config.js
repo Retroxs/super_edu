@@ -5,7 +5,7 @@ const config = {
   database: {
   	HOST: '127.0.0.1',
   	PORT: '3306',
-    DATABASE: 'koa_demo',
+    DATABASE: 'super_edu',
     USERNAME: 'root',
     PASSWORD: '123456'
   }
