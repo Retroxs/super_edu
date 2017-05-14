@@ -40,4 +40,7 @@ router.delete('/finance/del/:id',finance.removeFinance)
 //login
 router.post('/user/login',user.login)
 
+//student
+router.get('/student/:id',student.findStudent)
+
 module.exports = router

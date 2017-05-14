@@ -18,6 +18,7 @@ const getGrade = async function (date) {
 
 const updateGrade = async function (id, data) {
   await Grade.update({
+      exam_name:data.exam_name,
       score: data.score,
       teacher_sign: data.teacher_sign
     },

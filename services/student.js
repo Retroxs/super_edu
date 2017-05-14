@@ -35,9 +35,24 @@ const getStudent =async function (ctx) {
   ctx.body=result
 }
 
+const findStudent = async function (ctx) {
+  const data={}
+  data.stu_id = ctx.params.id
+  data.create_time = ctx.query.time
+  const result = await student.findStudent(data)
+  if(result){
+    ctx.body=result
+
+  }
+  else{
+    ctx.response.status = 400
+    ctx.body={error:'no this student'}
+  }
+}
 module.exports = {
   createStudent,
   getStudent,
   updateStudent,
-  removeStudent
+  removeStudent,
+  findStudent
 }

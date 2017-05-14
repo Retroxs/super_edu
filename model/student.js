@@ -38,9 +38,29 @@ const removeStudent = async function (id) {
   }})
 }
 
+const findStudent = async function(data){
+  const studentInfo=await SupereduDb.query(`SELECT * from student where id=${data.stu_id}`,{ type: SupereduDb.QueryTypes.SELECT })
+  if(studentInfo.length===1){
+    const sign = await SupereduDb.query(`SELECT sign from sign where stu_id=${data.stu_id} and create_time='${data.create_time}'`,{ type: SupereduDb.QueryTypes.SELECT })
+    const score =await SupereduDb.query(`SELECT exam_name,score,create_time from grade where stu_id=${data.stu_id}`,{ type: SupereduDb.QueryTypes.SELECT })
+    const plan =await SupereduDb.query(`SELECT content,status,create_time from plan where stu_id=${data.stu_id}`,{ type: SupereduDb.QueryTypes.SELECT })
+    const finance =await SupereduDb.query(`SELECT should_pay,pay,create_time,status from finance where stu_id=${data.stu_id}`,{ type: SupereduDb.QueryTypes.SELECT })
+    studentInfo[0].sign=sign[0].sign;
+    studentInfo[0].score=score;
+    studentInfo[0].plan=plan;
+    studentInfo[0].finance=finance;
+    studentInfo[0].time=data.create_time;
+    return studentInfo
+  }
+  else{
+    return false
+  }
+
+}
 module.exports = {
   getStudents,
   createStudent,
   updateStudent,
-  removeStudent
+  removeStudent,
+  findStudent
 }
