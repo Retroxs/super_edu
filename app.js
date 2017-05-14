@@ -1,6 +1,7 @@
 const path = require('path')
 const Koa = require('koa')
 const json = require('koa-json')
+const jwt = require('koa-jwt')
 const convert = require('koa-convert')
 const views = require('koa-views')
 const koaStatic = require('koa-static')
@@ -8,7 +9,6 @@ const bodyParser = require('koa-bodyparser')
 const koaLogger = require('koa-logger')
 const session = require('koa-session-minimal')
 const MysqlStore = require('koa-mysql-session')
-
 const config = require('./config')
 const routers = require('./routers/index')
 

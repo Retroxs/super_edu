@@ -26,8 +26,12 @@ const updateUser= async function (id,data) {
   return true
 }
 
-const getUsers = async function () {
-  const userInfo = await User.findAll({});
+const getUser = async function (name) {
+  const userInfo = await User.findOne({
+    where:{
+      username:name
+    }
+  });
 
   return userInfo // 返回数据
 }
@@ -39,7 +43,7 @@ const removeUser = async function (id) {
 }
 
 module.exports = {
-  getUsers,
+  getUser,
   createUser,
   updateUser,
   removeUser
