@@ -4,6 +4,7 @@ const json = require('koa-json')
 const jwt = require('koa-jwt')
 const convert = require('koa-convert')
 const views = require('koa-views')
+const historyApiFallback = require('koa-history-api-fallback'); // 引入依赖
 const koaStatic = require('koa-static')
 const bodyParser = require('koa-bodyparser')
 const koaLogger = require('koa-logger')
@@ -34,6 +35,7 @@ app.use(convert(koaLogger()))
 // 配置ctx.body解析中间件
 app.use(bodyParser())
 app.use(json())
+// app.use(historyApiFallback()); // 在这个地方加入。一定要加在静态文件的serve之前，否则会失效。
 // 配置静态资源加载中间件
 app.use(convert(koaStatic(
   path.join(__dirname , './dist')
