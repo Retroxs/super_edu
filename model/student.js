@@ -45,7 +45,7 @@ const findStudent = async function(data){
     const score =await SupereduDb.query(`SELECT exam_name,score,create_time from grade where stu_id=${data.stu_id}`,{ type: SupereduDb.QueryTypes.SELECT })
     const plan =await SupereduDb.query(`SELECT content,status,create_time from plan where stu_id=${data.stu_id}`,{ type: SupereduDb.QueryTypes.SELECT })
     const finance =await SupereduDb.query(`SELECT should_pay,pay,create_time,status from finance where stu_id=${data.stu_id}`,{ type: SupereduDb.QueryTypes.SELECT })
-    studentInfo[0].sign=sign[0].sign;
+    studentInfo[0].sign=sign.sign;
     studentInfo[0].score=score;
     studentInfo[0].plan=plan;
     studentInfo[0].finance=finance;
