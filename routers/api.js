@@ -24,6 +24,8 @@ router.post('/sign/:id',sign.Sign)
 router.post('/grade/create',grade.createGrade)
 router.get('/grade/info',grade.getGrade)
 router.post('/grade/update/:id',grade.Grade)
+router.delete('/grade/del/:id',grade.removeGrade)
+
 
 //plan api
 router.post('/plan/create',plan.createPlan)

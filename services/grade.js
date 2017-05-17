@@ -6,15 +6,9 @@ const student = require('../model/student')
 
 const createGrade = async function (ctx) {
   const data = ctx.request.body;
-  if (data.exam_name && data.create_time) {
-    await grade.createGrade(data)
-    ctx.body = {
-      success: true
-    }
-  } else {
-    ctx.response.status = 400
-    ctx.body = {error: 'you have no content'}
-
+  await grade.createGrade(data)
+  ctx.body={
+    success:true
   }
 }
 
@@ -39,8 +33,18 @@ const Grade = async function (ctx) {
   }
 }
 
+const removeGrade = async function (ctx){
+  const id = ctx.params.id;
+  const result = await grade.removeGrade(id);
+
+  ctx.body = {
+    success: true
+  }
+}
+
 module.exports = {
   createGrade,
   getGrade,
-  Grade
+  Grade,
+  removeGrade
 }

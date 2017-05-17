@@ -7,7 +7,13 @@ const SupereduDb = db.Superedu; // 引入数据库
 const Grade = SupereduDb.import(gradeModel); // 用sequelize的import方法引入表结构，
 
 const createGrade = async function (data) {
-  await SupereduDb.query(`INSERT INTO grade (stu_id,exam_name,create_time) SELECT id,'${data.exam_name}','${data.create_time}' from student`)
+  await Grade.create({
+    stu_id:data.stu_id,
+    exam_name:data.exam_name,
+    score:data.score,
+    teacher_sign:data.teacher_sign,
+    create_time:data.create_time,
+  })
   return true
 }
 
@@ -30,9 +36,15 @@ const updateGrade = async function (id, data) {
   return true
 }
 
+const removeGrade = async function (id) {
+  await Grade.destroy({where:{
+    id
+  }})
+}
 
 module.exports = {
   createGrade,
   getGrade,
-  updateGrade
+  updateGrade,
+  removeGrade
 }
